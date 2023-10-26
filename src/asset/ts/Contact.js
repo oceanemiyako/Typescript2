@@ -1,6 +1,10 @@
 "use strict";
 class Contact {
-    constructor(firstname, lastname, phone, email) {
-        super(firstname, lastname, email, phone);
+    constructor(id, firstName, lastName, email, phone) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
     }
 }

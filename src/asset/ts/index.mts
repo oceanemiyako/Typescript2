@@ -38,7 +38,7 @@ function deleteContact(id: number) {
 }
 
 function sortContacts(key: string) {
-    contacts.sort((a, b) => (a[key] > b[key] ? 1 : -1));
+    contacts.sort((a, b) => (a > b ? 1 : -1));
     updateContactList();
 }
 
