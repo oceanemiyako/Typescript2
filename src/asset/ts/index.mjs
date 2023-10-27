@@ -1,5 +1,6 @@
 "use strict";
 var _a;
+Object.defineProperty(exports, "__esModule", { value: true });
 let contacts = [];
 let contactId = 1;
 function addContact() {
