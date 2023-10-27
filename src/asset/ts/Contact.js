@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 class Contact {
     constructor(id, firstName, lastName, email, phone) {
         this.id = id;
@@ -8,3 +9,4 @@ class Contact {
         this.phone = phone;
     }
 }
+exports.default = Contact;

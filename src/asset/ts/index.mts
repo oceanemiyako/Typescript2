@@ -1,15 +1,7 @@
-
-interface Contact {
-    id: number;
-    firstName: string;
-    lastName: string;
-    email: string;
-    phone: string;
-}
+import Contact from "./Contact.js";
 
 let contacts: Contact[] = [];
 let contactId = 1;
-
 
 function addContact() {
     const firstName = (document.getElementById("first-name") as HTMLInputElement).value;
@@ -28,7 +20,6 @@ function addContact() {
 
         contacts.push(newContact);
         updateContactList();
-        clearForm();
     }
 }
 
@@ -37,13 +28,13 @@ function deleteContact(id: number) {
     updateContactList();
 }
 
-function sortContacts(key: string) {
-    contacts.sort((a, b) => (a > b ? 1 : -1));
+function sortContacts() {
+    contacts.sort((a, b) => (a.firstName > b.firstName ? 1 : -1)); 
     updateContactList();
 }
 
 function updateContactList() {
-    const contactList = document.getElementById('contact-list');
+    const contactList = document.getElementById('contact-list')!;
     contactList.innerHTML = '';
 
     for (const contact of contacts) {
@@ -58,13 +49,28 @@ function updateContactList() {
     }
 }
 
-function clearForm() {
-    (document.getElementById("first-name") as HTMLInputElement).value;
-    (document.getElementById("last-name") as HTMLInputElement).value;
-    (document.getElementById("email") as HTMLInputElement).value;
-    (document.getElementById("phone") as HTMLInputElement).value;
+function displayContact(contact: Contact) {
+    const contactList = document.getElementById('contact-list')!;
+    const contactItem = document.createElement("div");
+    contactItem.classList.add("contact-item");
+    contactItem.innerHTML = `
+        <span>Prénom: ${contact.firstName}</span>
+        <span>Nom: ${contact.lastName}</span>
+        <span>Email: ${contact.email}</span>
+        <span>Téléphone: ${contact.phone}</span>
+        <button class="delete-button" data-id="${contact.id}">Supprimer</button>
+    `;
+    contactList.appendChild(contactItem);
+
+    const deleteButton = contactItem.querySelector(".delete-button") as HTMLButtonElement;
+    deleteButton.addEventListener("click", () => {
+        contacts = contacts.filter(c => c.id !== contact.id);
+        contactList.removeChild(contactItem);
+    });
 }
 
-document.getElementById("add-contact").addEventListener('click', addContact);
+contacts.forEach(displayContact);
+
+document.getElementById("add-contact")?.addEventListener('click', addContact);
 
 updateContactList();

@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href=".\style.css">
     <title>Répertoire</title>
-    <script type="module" src="./assets/js/index.mjs" defer></script>
+    <script type="module" src="./asset/ts/index.mjs" defer></script>
 </head>
 <body>
     <h1>Contacts</h1>
-    <div id="contact-list"></div>
+   
     <form id="contact-form">
         <input type="text" id="first-name" placeholder="Prénom">
         <input type="text" id="last-name" placeholder="Nom">
         <input type="email" id="email" placeholder="Email">
         <input type="tel" id="phone" placeholder="Téléphone">
         <button id="add-contact">Ajouter un contact</button>
+        <button id="delete-contact">Supprimer un contact</button>
+
     </form>
-    <script src="Contact.ts"></script>
+    <div id="contact-list"></div>
 </body>
 </html>

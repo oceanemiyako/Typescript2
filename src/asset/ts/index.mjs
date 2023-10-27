@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+var _a;
 let contacts = [];
 let contactId = 1;
 function addContact() {
@@ -17,15 +17,14 @@ function addContact() {
         };
         contacts.push(newContact);
         updateContactList();
-        clearForm();
     }
 }
 function deleteContact(id) {
     contacts = contacts.filter(contact => contact.id !== id);
     updateContactList();
 }
-function sortContacts(key) {
-    contacts.sort((a, b) => (a > b ? 1 : -1));
+function sortContacts() {
+    contacts.sort((a, b) => (a.firstName > b.firstName ? 1 : -1));
     updateContactList();
 }
 function updateContactList() {
@@ -42,11 +41,24 @@ function updateContactList() {
         contactList.appendChild(contactDiv);
     }
 }
-function clearForm() {
-    document.getElementById("first-name").value;
-    document.getElementById("last-name").value;
-    document.getElementById("email").value;
-    document.getElementById("phone").value;
+function displayContact(contact) {
+    const contactList = document.getElementById('contact-list');
+    const contactItem = document.createElement("div");
+    contactItem.classList.add("contact-item");
+    contactItem.innerHTML = `
+        <span>Prénom: ${contact.firstName}</span>
+        <span>Nom: ${contact.lastName}</span>
+        <span>Email: ${contact.email}</span>
+        <span>Téléphone: ${contact.phone}</span>
+        <button class="delete-button" data-id="${contact.id}">Supprimer</button>
+    `;
+    contactList.appendChild(contactItem);
+    const deleteButton = contactItem.querySelector(".delete-button");
+    deleteButton.addEventListener("click", () => {
+        contacts = contacts.filter(c => c.id !== contact.id);
+        contactList.removeChild(contactItem);
+    });
 }
-document.getElementById("add-contact").addEventListener('click', addContact);
+contacts.forEach(displayContact);
+(_a = document.getElementById("add-contact")) === null || _a === void 0 ? void 0 : _a.addEventListener('click', addContact);
 updateContactList();
