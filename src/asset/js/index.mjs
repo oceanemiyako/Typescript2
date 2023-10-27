@@ -1,6 +1,3 @@
-"use strict";
-var _a;
-Object.defineProperty(exports, "__esModule", { value: true });
 let contacts = [];
 let contactId = 1;
 function addContact() {
@@ -61,5 +58,9 @@ function displayContact(contact) {
     });
 }
 contacts.forEach(displayContact);
-(_a = document.getElementById("add-contact")) === null || _a === void 0 ? void 0 : _a.addEventListener('click', addContact);
+document.getElementById("contact-form")?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    addContact();
+});
 updateContactList();
+export {};

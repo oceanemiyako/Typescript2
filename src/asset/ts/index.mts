@@ -71,6 +71,9 @@ function displayContact(contact: Contact) {
 
 contacts.forEach(displayContact);
 
-document.getElementById("add-contact")?.addEventListener('click', addContact);
+document.getElementById("contact-form")?.addEventListener('submit', (event) => {
+    event.preventDefault()
+    addContact()
+});
 
 updateContactList();
